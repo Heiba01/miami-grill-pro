@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as RecommendRouteImport } from './routes/recommend'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
@@ -50,6 +51,11 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecommendRoute = RecommendRouteImport.update({
+  id: '/recommend',
+  path: '/recommend',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/recommend': typeof RecommendRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rewards': typeof RewardsRoute
   '/account': typeof AuthenticatedAccountRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/recommend': typeof RecommendRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rewards': typeof RewardsRoute
   '/account': typeof AuthenticatedAccountRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/recommend': typeof RecommendRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rewards': typeof RewardsRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/menu'
+    | '/recommend'
     | '/reset-password'
     | '/rewards'
     | '/account'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/menu'
+    | '/recommend'
     | '/reset-password'
     | '/rewards'
     | '/account'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/menu'
+    | '/recommend'
     | '/reset-password'
     | '/rewards'
     | '/_authenticated/account'
@@ -161,6 +173,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
   MenuRoute: typeof MenuRoute
+  RecommendRoute: typeof RecommendRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RewardsRoute: typeof RewardsRoute
 }
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recommend': {
+      id: '/recommend'
+      path: '/recommend'
+      fullPath: '/recommend'
+      preLoaderRoute: typeof RecommendRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -269,6 +289,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
   MenuRoute: MenuRoute,
+  RecommendRoute: RecommendRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RewardsRoute: RewardsRoute,
 }
