@@ -15,17 +15,17 @@ export const SITE = {
   delivery: [
     {
       name: "Uber Eats",
-      url: "https://www.ubereats.com/search?q=Miami%20Grill%20Lauderhill",
+      url: "https://www.ubereats.com/store/miami-grill-lauderhill/UDma6fBQScSyuLK2xdWMQA",
       blurb: "Fast delivery, tracked to your door",
     },
     {
       name: "DoorDash",
-      url: "https://www.doordash.com/search/store/Miami%20Grill%20Lauderhill",
+      url: "https://www.doordash.com/store/miami-grill-lauderhill-211288/",
       blurb: "DashPass members save on fees",
     },
     {
       name: "Grubhub",
-      url: "https://www.grubhub.com/search?query=Miami%20Grill%20Lauderhill",
+      url: "https://www.grubhub.com/restaurant/miami-grill-5001-n-university-dr-lauderhill/12456456",
       blurb: "Deals and perks on every order",
     },
   ],
