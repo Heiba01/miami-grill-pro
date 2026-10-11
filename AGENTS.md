@@ -16,3 +16,4 @@
 - Staff/admin access is stored in `user_roles` and checked with `is_staff`/`has_role`; the first account to sign up becomes admin. Why: no privilege escalation via profile edits.
 - Menu photos live in a private storage bucket and are shown via long-lived signed links. Why: the workspace blocks public buckets.
 - Public menu is read via a server function with the publishable key so pages render with data. Why: SEO and fast first paint.
+- AI dish recommendations run in a server function that sends only available menu items to the AI and drops any suggested id not on the menu. Why: keeps the AI key private and prevents made-up dishes.
