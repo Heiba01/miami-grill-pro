@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Clock, MapPin, Phone, Star } from "lucide-react";
+import { Bike, Clock, MapPin, Phone, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MenuItemCard } from "@/components/menu-item-card";
 import { menuQuery } from "@/lib/menu.functions";
