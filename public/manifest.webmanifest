@@ -1,0 +1,15 @@
+{
+  "name": "Miami Grill Lauderhill",
+  "short_name": "Miami Grill",
+  "description": "Order gyros, burgers, wings, Philly cheesesteaks, smoothies and more from Miami Grill in Lauderhill, FL.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#df068c",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
