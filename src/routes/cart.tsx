@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
-import { cartTotals, money } from "@/lib/site";
+import { cartTotals, money, SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
