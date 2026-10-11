@@ -120,6 +120,16 @@ function CartPage() {
             <p className="text-center text-xs text-muted-foreground">Pay when you pick up.</p>
           </form>
         )}
+        <div className="mt-6 border-t border-border pt-4">
+          <p className="text-sm font-semibold">Want it delivered instead?</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {SITE.delivery.map((d) => (
+              <Button key={d.name} asChild variant="outline" size="sm" className="font-display font-bold uppercase">
+                <a href={d.url} target="_blank" rel="noreferrer">{d.name}</a>
+              </Button>
+            ))}
+          </div>
+        </div>
       </aside>
     </div>
   );
