@@ -77,6 +77,32 @@ function Home() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pb-4">
+        <div className="mb-10">
+          <p className="eyebrow text-primary">Too comfy to leave?</p>
+          <h2 className="mt-2 font-display text-4xl font-black uppercase">Get it delivered</h2>
+          <p className="mt-3 max-w-xl text-muted-foreground">Order Miami Grill through your favorite delivery app and we'll bring the grill to you.</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {SITE.delivery.map((d) => (
+            <a
+              key={d.name}
+              href={d.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex flex-col gap-2 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-display text-2xl font-black uppercase">{d.name}</span>
+                <Bike className="size-6 text-primary transition-transform group-hover:translate-x-1" />
+              </div>
+              <p className="text-sm text-muted-foreground">{d.blurb}</p>
+              <span className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-primary">Order delivery →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4">
         <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-border bg-card p-8 md:grid-cols-[1fr_auto] md:p-12">
           <div>
