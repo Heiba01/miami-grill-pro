@@ -16,6 +16,7 @@ export function Logo() {
 const nav = [
   { to: "/", label: "Home" },
   { to: "/menu", label: "Menu" },
+  { to: "/recommend", label: "Find My Dish" },
   { to: "/rewards", label: "Rewards" },
   { to: "/contact", label: "Contact" },
 ] as const;
