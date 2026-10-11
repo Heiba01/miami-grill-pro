@@ -34,14 +34,14 @@ export function AdminMenu() {
   useEffect(() => { load(); }, []);
 
   async function save() {
-    if (!draft?.name) return toast.error("Name is required");
+    if (!draft?.name) { toast.error("Name is required"); return; }
     const row = {
       name: draft.name, description: draft.description ?? "", price: Number(draft.price ?? 0),
       category_id: draft.category_id ?? cats[0]?.id ?? null, image_url: draft.image_url ?? null,
       available: draft.available ?? true, featured: draft.featured ?? false,
     };
     const { error } = draft.id ? await supabase.from("menu_items").update(row).eq("id", draft.id) : await supabase.from("menu_items").insert(row);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Menu saved");
     setDraft(null);
     load();
@@ -69,17 +69,17 @@ export function AdminMenu() {
     setUploading(true);
     const path = `${crypto.randomUUID()}-${file.name.replace(/[^a-z0-9.]/gi, "_")}`;
     const up = await supabase.storage.from("menu-images").upload(path, file);
-    if (up.error) { setUploading(false); return toast.error(up.error.message); }
+    if (up.error) { setUploading(false); toast.error(up.error.message); return; }
     const { data, error } = await supabase.storage.from("menu-images").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
     setUploading(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setDraft((d) => ({ ...d, image_url: data.signedUrl }));
   }
 
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={() => setDraft({ available: true, category_id: cats[0]?.id })}><Plus /> Add meal</Button>
+        <Button onClick={() => setDraft({ available: true, category_id: cats[0]?.id ?? null })}><Plus /> Add meal</Button>
         <div className="ml-auto flex gap-2">
           <Input placeholder="New category name" value={newCat} onChange={(e) => setNewCat(e.target.value)} className="w-56" />
           <Button variant="outline" onClick={addCat}>Add category</Button>

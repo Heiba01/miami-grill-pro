@@ -11,7 +11,7 @@ import { useAuth } from "@/lib/auth";
 const safe = (r?: string) => (r && r.startsWith("/") && !r.startsWith("//") ? r : "/account");
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({ redirect: typeof s.redirect === "string" ? s.redirect : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined }),
   head: () => ({
     meta: [
       { title: "Sign in — Miami Grill Lauderhill" },

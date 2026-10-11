@@ -54,7 +54,7 @@ function CartPage() {
       _pickup_time: pickup,
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     await supabase.from("profiles").update({ full_name: name, phone }).eq("id", user.id);
     clear();
     toast.success("Order placed! We're on it.");
