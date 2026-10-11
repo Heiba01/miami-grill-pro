@@ -10,11 +10,38 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as AuthenticatedOrdersIdRouteImport } from './routes/_authenticated/orders.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenuRoute = MenuRouteImport.update({
@@ -22,31 +49,108 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOrdersIdRoute = AuthenticatedOrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/rewards': typeof RewardsRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/orders/$id': typeof AuthenticatedOrdersIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/rewards': typeof RewardsRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/orders/$id': typeof AuthenticatedOrdersIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
   '/menu': typeof MenuRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/rewards': typeof RewardsRoute
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/orders/$id': typeof AuthenticatedOrdersIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/menu'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/cart'
+    | '/contact'
+    | '/menu'
+    | '/reset-password'
+    | '/rewards'
+    | '/account'
+    | '/orders/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/menu'
-  id: '__root__' | '/' | '/menu'
+  to:
+    | '/'
+    | '/auth'
+    | '/cart'
+    | '/contact'
+    | '/menu'
+    | '/reset-password'
+    | '/rewards'
+    | '/account'
+    | '/orders/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/cart'
+    | '/contact'
+    | '/menu'
+    | '/reset-password'
+    | '/rewards'
+    | '/_authenticated/account'
+    | '/_authenticated/orders/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
+  ContactRoute: typeof ContactRoute
   MenuRoute: typeof MenuRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  RewardsRoute: typeof RewardsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +162,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -65,12 +197,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/orders/$id': {
+      id: '/_authenticated/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof AuthenticatedOrdersIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedOrdersIdRoute: typeof AuthenticatedOrdersIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedOrdersIdRoute: AuthenticatedOrdersIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
+  ContactRoute: ContactRoute,
   MenuRoute: MenuRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  RewardsRoute: RewardsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
