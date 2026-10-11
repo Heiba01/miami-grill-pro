@@ -3,12 +3,12 @@ import { ShoppingBag, User, LayoutDashboard, Phone } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
 import { SITE } from "@/lib/site";
+import logoAsset from "@/assets/mg-logo.png.asset.json";
 
 export function Logo() {
   return (
-    <Link to="/" className="flex flex-col leading-none">
-      <span className="font-display text-2xl font-black italic tracking-tight text-primary">MIAMI</span>
-      <span className="font-display text-xs font-bold tracking-[0.5em] text-palm">GRILL</span>
+    <Link to="/" className="flex items-center" aria-label="Miami Grill home">
+      <img src={logoAsset.url} alt="Miami Grill" className="h-11 w-auto" />
     </Link>
   );
 }
