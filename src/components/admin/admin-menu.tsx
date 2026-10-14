@@ -100,8 +100,23 @@ export function AdminMenu() {
                   {i.image_url ? <img src={i.image_url} alt="" className="size-12 rounded object-cover" /> : <div className="size-12 rounded bg-muted" />}
                   <div className="min-w-40 flex-1">
                     <p className="font-semibold">{i.name}</p>
-                    <p className="text-sm text-primary">{money(Number(i.price))}</p>
+                    <p className="text-xs text-muted-foreground">Now {money(Number(i.price))}</p>
                   </div>
+                  <label className="flex items-center gap-1 text-sm">
+                    $
+                    <Input
+                      key={`${i.id}-${i.price}`}
+                      type="number" step="0.01" min="0" defaultValue={Number(i.price)}
+                      aria-label={`Price for ${i.name}`}
+                      className="h-8 w-24"
+                      onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
+                      onBlur={(e) => {
+                        const v = Number(e.target.value);
+                        if (!Number.isFinite(v) || v < 0) { toast.error("Enter a valid price"); return; }
+                        if (v !== Number(i.price)) quick(i.id, { price: v }).then(() => toast.success(`${i.name} now ${money(v)}`));
+                      }}
+                    />
+                  </label>
                   <label className="flex items-center gap-2 text-xs text-muted-foreground"><Switch checked={i.available} onCheckedChange={(v) => quick(i.id, { available: v })} /> In stock</label>
                   <label className="flex items-center gap-2 text-xs text-muted-foreground"><Switch checked={i.featured} onCheckedChange={(v) => quick(i.id, { featured: v })} /> Homepage</label>
                   <Button size="icon" variant="ghost" onClick={() => setDraft({ ...i, price: Number(i.price) })} aria-label="Edit"><Pencil /></Button>
